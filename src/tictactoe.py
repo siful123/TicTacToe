@@ -1,4 +1,7 @@
-'''l = [1, 2, 3, 4, 5, 6, 7]
+
+
+''' Different ways to get indices from a list
+l = [1, 2, 3, 4, 5, 6, 7]
 print(l[1])
 print(l[-1])
 print(l[1:])
