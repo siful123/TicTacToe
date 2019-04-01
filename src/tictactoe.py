@@ -73,20 +73,58 @@ test()
 print(x)#[2]
 '''
 
-x = [[0, 0, 0],
-     [0, 0, 0],
-     [0, 0, 0]]
+x = [[1, 0, 1],
+     [1, 0, 0],
+     [1, 2, 0]]
 
 
-def tictactoeboard(game_map, player, row, column, display):
-    print("   a  b  c")
 
-    if not display:
-        game_map[row][column] = player
-    for count,row in enumerate(game_map):
-        print(count,row)
+def tictactoeboard(game_map, player, row, column, display=False):
+    try:
+        print("   0  1  2")
 
-    return game_map
+        if not display:
+            game_map[row][column] = player
+        for count,row in enumerate(game_map):
+            print(count,row)
+        return game_map
+    except IndexError as e:
+        print("Error: Make sure you input row/column as 0,1, or 2", e)
+
+    except Exception as e:
+        print("Something went very wrong!", e)
+
+def horizontalwin (current_game):
+    for row in x:
+        print(row)
+        if row.count(row[0]) == len(row) and row[0] !=0:
+            print("Winner")
 
 
-x = tictactoeboard(x, 1, 0, 1, False)
+def verticalwin (current_game):
+    for col in range(len(x)):
+        print(col)
+        check = []
+        for row in x:
+            check.append(row[col])
+            print(check)
+        if check.count(check[0]) == len(check) and check[0] != 0:
+            print("Winner")
+
+
+
+'''l = [[0,1],
+     [2,3],
+     [3,4]]
+def messaround(list):
+    #len(list) <- for l it contains 3 lists so the size is 3 not 2 
+    for column in range(len(list)):
+        print (column)
+        new = []
+        for row in list:
+            new.append(row[column])
+            # index becomes out of range but it the new list is vertical elements
+            print(new)
+            
+messaround(l)
+'''
