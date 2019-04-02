@@ -72,7 +72,7 @@ def test():
 test()
 print(x)#[2]
 '''
-
+import itertools
 x = [[1, 2, 1],
      [0, 1, 2],
      [0, 2, 1]]
@@ -94,14 +94,16 @@ def tictactoeboard(game_map, player, row, column, display=False):
     except Exception as e:
         print("Something went very wrong!", e)
 
-def horizontalwin (current_game):
+def win (current_game):
+
+    #Horizontal winner
     for row in x:
         print(row)
         if row.count(row[0]) == len(row) and row[0] !=0:
-            print("Winner")
+            print(f"Player {row[0]} has gotten three in a row!")
 
 
-def verticalwin (current_game):
+    #Vertical Winner
     for col in range(len(x)):
         #print(col)
         check = []
@@ -109,9 +111,11 @@ def verticalwin (current_game):
             check.append(row[col])
             #print(check)
         if check.count(check[0]) == len(check) and check[0] != 0:
-            print("Winner")
+            print(f"Player {check[0]} has gotten three down!")
 
-def diagonalwin(current_game):
+
+
+    #Diagonal winner
     diagonals = []
     cols = reversed(range(len(x)))
     rows = range(len(x))
@@ -119,14 +123,28 @@ def diagonalwin(current_game):
     for indexOfX in range(len(x)):
         diagonals.append(x[indexOfX][indexOfX])
     if diagonals.count(diagonals[0]) == len(diagonals) and diagonals[0] != 0:
-        print("Winner")
+        print(f"Player {diagonals[0]} has gotten three diagonally!")
+
+    diags = []
     for col,row in zip(cols,rows):
-        diagonals.append(x[row][col])
+        diags.append(x[row][col])
+    if diags.count(diags[0]) == len(diags) and diags[0] != 0:
+        print(f"Player {diags[0]} has gotten three diagonally!")
 
+play = True
+players = itertools.cycle([1, 2])
+while play:
+    x = [[0, 0, 0],
+         [0, 0, 0],
+         [0, 0, 0]]
 
-
-diagonalwin(x)
-
+    game_won = False
+    while not game_won:
+        current_player = next(players)
+        print(f"Players Turn: {current_player}")
+        column_choice = int(input("Play in column (0, 1, 2): "))
+        row_choice = int(input("Play in row (0, 1, 2): "))
+        game = tictactoeboard(x, current_player, row_choice, column_choice)
 
 
 
