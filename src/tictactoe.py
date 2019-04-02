@@ -73,9 +73,9 @@ test()
 print(x)#[2]
 '''
 
-x = [[1, 0, 1],
-     [1, 0, 0],
-     [1, 2, 0]]
+x = [[1, 2, 1],
+     [0, 1, 2],
+     [0, 2, 1]]
 
 
 
@@ -103,17 +103,62 @@ def horizontalwin (current_game):
 
 def verticalwin (current_game):
     for col in range(len(x)):
-        print(col)
+        #print(col)
         check = []
         for row in x:
             check.append(row[col])
-            print(check)
+            #print(check)
         if check.count(check[0]) == len(check) and check[0] != 0:
             print("Winner")
 
+def diagonalwin(current_game):
+    diagonals = []
+    cols = reversed(range(len(x)))
+    rows = range(len(x))
+
+    for indexOfX in range(len(x)):
+        diagonals.append(x[indexOfX][indexOfX])
+    if diagonals.count(diagonals[0]) == len(diagonals) and diagonals[0] != 0:
+        print("Winner")
+    for col,row in zip(cols,rows):
+        diagonals.append(x[row][col])
 
 
-'''l = [[0,1],
+
+diagonalwin(x)
+
+
+
+
+
+
+
+
+
+
+'''
+x = range(3)
+y = [2,1,0]
+
+zip(x,y)
+
+z = [5,6,7]
+
+for i in zip(x,y,z):
+    print(i)
+'''
+
+
+
+
+
+
+
+
+
+
+'''
+l = [[0,1],
      [2,3],
      [3,4]]
 def messaround(list):
